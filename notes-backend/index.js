@@ -5,6 +5,7 @@ const app = express()
 
 
 app.use(cors())
+app.use(express.json())
 
 
 let notes = [
@@ -31,6 +32,23 @@ app.get('/', (req, res) =>{
 
 app.get('/api/notes', (req, res) => {
 	res.json(notes);
+})
+
+app.get('/api/notes/:id', (req, res) => {
+	const id = Number(req.params.id)
+	const note = notes.find(n => n.id === id)
+	if (note) {
+		res.json(note)
+	} else {
+		return res.status(400).end()
+	}
+})
+
+app.delete('/api/notes/:id', (req, res) => {
+	const id = Number(req.params.id)
+	notes = notes.filter(n => n.id !== id)
+
+	res.status(204).end()
 })
 
 

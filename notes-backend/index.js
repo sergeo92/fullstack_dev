@@ -1,30 +1,14 @@
 const express = require('express')
 const cors = require('cors')
 const morgan = require('morgan')
+require('dotenv').config()
+
 
 const app = express()
-
-//const requestLogger = (request, response, next) => {
-//	console.log('Method:', request.method)
-//	console.log('Path:  ', request.path)
-//	console.log('Body:  ', request.body)
-//	console.log('---')
-//	next()
-//}
-//
-//const unknownEndpoint = (request, response) => {
-//	response.status(404).send({ error: 'unknown endpoint' })
-//}
-
 
 app.use(cors())
 app.use(express.json())
 app.use(morgan('tiny'))
-
-
-
-
-
 
 const generateId = () => {
 	const maxId = notes.length > 0
@@ -32,7 +16,6 @@ const generateId = () => {
 		: 0
 	return maxId + 1
 }
-
 
 let notes = [
 	{
